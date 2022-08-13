@@ -16,7 +16,6 @@ function App() {
 const AppWrap = styled.div`
   position: relative;
   margin: 50px auto 0;
-  padding-top : 72px;
   max-width: 375px;
   min-height: 720px;
   max-height: 720px;

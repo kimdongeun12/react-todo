@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './pages/App';
 import GlobalStyles from './assets/styles/GlobalStyles';
+import MixInStyles from './assets/styles/MixInStyles';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
     <GlobalStyles />
+    <MixInStyles />
     <App />
   </>
 );

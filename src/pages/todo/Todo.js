@@ -7,7 +7,7 @@ function Todo() {
   return (
     <>
       <TodoWrap>
-        <TodoTitle Text ="ToDo실습"/>
+        <TodoTitle Text ="ToDoList"/>
         <TodoInput />
         <TodoList />
       </TodoWrap>
@@ -20,10 +20,10 @@ const TodoWrap = styled.div`
   position: absolute;
   left: 0;
   top : 0;
-  padding: 16px;
+  padding: 80px 16px 16px;
   width: 100%;
   min-height: 100%;
-  background-color : #124241;
+  background-color : #ffffff;
 `
 
 

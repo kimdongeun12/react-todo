@@ -5,7 +5,7 @@ function Header() {
     <>
       <HeaderWrap>
         <TitleText>
-          <span>ToDoList</span>
+          <span>ToDo실습</span>
         </TitleText>
       </HeaderWrap>
     </>
@@ -20,6 +20,7 @@ const HeaderWrap = styled.div`
   padding : 40px 16px 16px;
   background-color: #263139;
   color: #FFFFFF;
+  font-size: 20px;
   z-index : 5;
   & > div {
     display : inline-block;
