@@ -1,12 +1,13 @@
+import React from 'react';
 import styled from "styled-components";
 
-function TodoInput() {
+function TodoInput({onSaveTodo}) {
   return (
     <>
       <TextWrap>
         <TextField>
-          <input type="text" />
-          <button type="button">저장</button>
+          <input type="text" placeholder='할 일을 적어주세용!'/>
+          <button type="button" onClick={onSaveTodo}>저장</button>
         </TextField>
       </TextWrap>
     </>

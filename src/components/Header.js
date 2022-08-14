@@ -18,9 +18,10 @@ const HeaderWrap = styled.div`
   top: 0;
   width: 100%;
   padding : 40px 16px 16px;
-  background-color: #263139;
+  background-color: #36daac;
   color: #FFFFFF;
   font-size: 20px;
+  font-weight: bold;
   z-index : 5;
   & > div {
     display : inline-block;

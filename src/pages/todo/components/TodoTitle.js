@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from "styled-components";
 
 function TodoTitle(props) {
@@ -11,7 +12,7 @@ function TodoTitle(props) {
 const Title = styled.div`
   width: 100%;
   padding: 32px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   text-align: center;
 `

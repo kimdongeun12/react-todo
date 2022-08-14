@@ -1,13 +1,14 @@
+import React from 'react';
 import styled from "styled-components";
 
-function TodoListItem() {
+function TodoListItem({TodoList , index}) {
   return (
     <>
       <CheckBoxList>
         <CheckBox >
           <input id="List01" type="checkbox" value="" />
-          <label for="List01">
-            아이템
+          <label htmlFor="List01">
+            {TodoList.item}
           </label>
         </CheckBox>
         <BtnWrap>
@@ -45,14 +46,15 @@ const CheckBox = styled.div`
     display: inline-block;
     padding-left: 24px;
     padding-right: 8px;
-    font-size: 18px;
+    min-height: 18px;
+    font-size: 14px;
     cursor: pointer;
   };
   & > input[type="checkbox"] + label::before {
     content: "";
     position: absolute;
     left: 0;
-    top: 4px;
+    top: 0;
     width: 16px;
     height: 16px;
     border: 1px solid #dddddd;
@@ -64,7 +66,7 @@ const CheckBox = styled.div`
     content: "";
     position: absolute;
     left: 6px;
-    top: 7px;
+    top: 3px;
     width: 4px;
     height: 8px;
     border: 0 solid #dddddd;
@@ -77,11 +79,10 @@ const CheckBox = styled.div`
     text-decoration: line-through;
   };
   & > input[type="checkbox"]:checked + label::before {
-    border-color: #2778fe;
-    background-color: #2778fe;
+    border-color: #36daac;
   };
   & > input[type="checkbox"]:checked + label::after {
-    border-color: #ffffff;
+    border-color: #36daac;
   };
 ` 
 const BtnWrap = styled.div`
