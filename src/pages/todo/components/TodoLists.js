@@ -2,7 +2,7 @@ import React from 'react'
 import styled from "styled-components";
 import TodoListItem from "./TodoListItem";
 
-function TodoList({TodoLists}) {
+function TodoList({TodoListsItem}) {
   // 배열로 리스트를 생성
   // const TodoLists = [
   //   {
@@ -17,7 +17,7 @@ function TodoList({TodoLists}) {
   return (
     <>
       <ListsWrap>
-        {TodoLists.map((TodoList , index) => (
+        {TodoListsItem.map((TodoList , index) => (
             <TodoListItem TodoList = {TodoList} key={index} />
         ))}
       </ListsWrap>

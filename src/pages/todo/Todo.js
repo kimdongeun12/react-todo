@@ -1,33 +1,53 @@
-import React from 'react'
+import React , {useState , useCallback} from 'react' // useState를 이용해 상태관리를 할 예정
 import styled from "styled-components";
 import TodoTitle from "./components/TodoTitle";
 import TodoInput from "./components/TodoInput";
 import TodoLists from "./components/TodoLists";
 
 function Todo() {
-  const onSaveTodo = () => {
-    console.log('저장버튼 테스트');
-  }
   
   // 배열로 리스트를 생성
-  const TodoLists = [
+  const [TodoListsItem, setTodos] = useState([
     {
       item : '아이템',
+      checkingItem: false,
       timeStamp : 202208141403 // 저는 타임스탬프를 집어 넣을거에요
     },
     {
       item : '아이템ㅁㄴㅇ',
+      checkingItem: false,
+      timeStamp : 202208141406 // 저는 타임스탬프를 집어 넣을거에요
+    },
+    {
+      item : '아이템ㅁㄴㅇ',
+      checkingItem: false,
       timeStamp : 202208141406 // 저는 타임스탬프를 집어 넣을거에요
     }
-  ]
+  ]);
+  // setTodos를 이용해 삭제 , 수정 , 추가를 할 예정
+
+  // const onChange = useCallback(e=>{
+  //   setTodos(e.target.value);
+  // },[])
+  const onSaveTodo = useCallback(
+      e => {
+        console.log('asdasd')
+        setTodos(''); //value 초기화
+        //기본이벤트(새로고침) 방지
+        e.preventDefault();
+      }
+  ,[TodoListsItem])
+
+  const TodoListsItemCheckedFalse = TodoListsItem.filter( accr => accr.checkingItem === false);
+
   return (
     <>
       <TodoWrap>
         <TodoTitle Text ="ToDoList" onSaveTodo={onSaveTodo}/>
         <TodoInput />
         <TodoListsWrap>
-          <TodoListCount>할 일이 개 남았습니다~</TodoListCount>
-          <TodoLists TodoLists = {TodoLists}/>
+          <TodoListCount>할 일이 {TodoListsItemCheckedFalse.length}개 남았습니다~</TodoListCount>
+          <TodoLists TodoListsItem = {TodoListsItem}/>
         </TodoListsWrap>
       </TodoWrap>
     </>

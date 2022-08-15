@@ -6,7 +6,7 @@ function TodoListItem({TodoList , index}) {
     <>
       <CheckBoxList>
         <CheckBox >
-          <input id="List01" type="checkbox" value="" />
+          <input id="List01" type="checkbox" value=""/>
           <label htmlFor="List01">
             {TodoList.item}
           </label>
