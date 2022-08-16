@@ -26,9 +26,9 @@ function Todo() {
   ]);
   // setTodos를 이용해 삭제 , 수정 , 추가를 할 예정
 
-  // const onChange = useCallback(e=>{
-  //   setTodos(e.target.value);
-  // },[])
+  const onChange = useCallback(e=>{
+    setTodos(e.target.value);
+  },[])
   const onSaveTodo = useCallback(
       e => {
         console.log('asdasd')
@@ -36,7 +36,7 @@ function Todo() {
         //기본이벤트(새로고침) 방지
         e.preventDefault();
       }
-  ,[TodoListsItem])
+  ,[TodoListsItem]);
 
   const TodoListsItemCheckedFalse = TodoListsItem.filter( accr => accr.checkingItem === false);
 

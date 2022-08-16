@@ -3,6 +3,7 @@ import styled from "styled-components";
 import TodoListItem from "./TodoListItem";
 
 function TodoList({TodoListsItem}) {
+  
   // 배열로 리스트를 생성
   // const TodoLists = [
   //   {
@@ -26,8 +27,10 @@ function TodoList({TodoListsItem}) {
 }
 
 const ListsWrap = styled.ul`
- display: block;
+  display: block;
   padding: 8px 16px;
+  max-width: 390px;
+  overflow-y: auto;
 `
 
 export default TodoList;

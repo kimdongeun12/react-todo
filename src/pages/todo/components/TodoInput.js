@@ -1,7 +1,8 @@
-import React from 'react';
+import React , {useCallback} from 'react' // useState를 이용해 상태관리를 할 예정
 import styled from "styled-components";
 
 function TodoInput({onSaveTodo}) {
+  
   return (
     <>
       <TextWrap>
