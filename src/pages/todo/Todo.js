@@ -8,30 +8,23 @@ function Todo() {
   
   // 배열로 리스트를 생성
   const [todos, setTodos] = useState([
+    // {id:1 , item: "todoList" , checked: true},
   ]);
   // setTodos를 이용해 삭제 , 수정 , 추가를 할 예정
-
   const nextId = useRef(todos.length);
-  const onInsert = useCallback(
-    (inputValue) => {
-      nextId.current++; //nextId 1씩 더하기
-      const todo = {
-        id: nextId.current,
-        item : inputValue,
-        checked: false,
-      };
-      setTodos(todos.concat(todo)); //concat(): 인자로 주어진 배열이나 값들을 기존 배열에 합쳐서 새 배열 반환
-    },
-    [todos],
-  );
 
-  const onUpdate = (id, text) => {
-    setTodos(todos.map((todo) => (todo.id === id ? { ...todo, text } : todo)));
-  };
+  const onInsert = useCallback((inputValue) => {
+    nextId.current++; //nextId 1씩 더하기
+    const todo = {
+      id: nextId.current,
+      item : inputValue,
+      checked: false,
+    };
+    setTodos(todos.concat(todo)); //concat(): 인자로 주어진 배열이나 값들을 기존 배열에 합쳐서 새 배열 반환
+  },[todos]);
   
   // 추가 , 삭제 , 변경 된 체크값을 재배열함
   const unChecked = todos.filter(todo => !todo.checked);
-
 
   return (
     <>
@@ -40,7 +33,7 @@ function Todo() {
         <TodoInput onInsert = {onInsert}/>
         <TodoListsWrap>
           <TodoListCount>할 일이 {unChecked.length}개 남았습니다~</TodoListCount>
-          <TodoLists todos = {todos} onUpdate = {onUpdate}/>
+          <TodoLists todos = {todos}/>
         </TodoListsWrap>
       </TodoWrap>
     </>
