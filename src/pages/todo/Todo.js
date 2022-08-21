@@ -1,4 +1,4 @@
-import React , {useState , useCallback} from 'react' // useState를 이용해 상태관리를 할 예정
+import React , {useState , useCallback , useRef} from 'react' // useState를 이용해 상태관리를 할 예정
 import styled from "styled-components";
 import TodoTitle from "./components/TodoTitle";
 import TodoInput from "./components/TodoInput";
@@ -7,47 +7,40 @@ import TodoLists from "./components/TodoLists";
 function Todo() {
   
   // 배열로 리스트를 생성
-  const [TodoListsItem, setTodos] = useState([
-    {
-      item : '아이템',
-      checkingItem: false,
-      timeStamp : 202208141403 // 저는 타임스탬프를 집어 넣을거에요
-    },
-    {
-      item : '아이템ㅁㄴㅇ',
-      checkingItem: false,
-      timeStamp : 202208141406 // 저는 타임스탬프를 집어 넣을거에요
-    },
-    {
-      item : '아이템ㅁㄴㅇ',
-      checkingItem: false,
-      timeStamp : 202208141406 // 저는 타임스탬프를 집어 넣을거에요
-    }
+  const [todos, setTodos] = useState([
   ]);
   // setTodos를 이용해 삭제 , 수정 , 추가를 할 예정
 
-  const onChange = useCallback(e=>{
-    setTodos(e.target.value);
-  },[])
-  const onSaveTodo = useCallback(
-      e => {
-        console.log('asdasd')
-        setTodos(''); //value 초기화
-        //기본이벤트(새로고침) 방지
-        e.preventDefault();
-      }
-  ,[TodoListsItem]);
+  const nextId = useRef(todos.length);
+  const onInsert = useCallback(
+    (inputValue) => {
+      nextId.current++; //nextId 1씩 더하기
+      const todo = {
+        id: nextId.current,
+        item : inputValue,
+        checked: false,
+      };
+      setTodos(todos.concat(todo)); //concat(): 인자로 주어진 배열이나 값들을 기존 배열에 합쳐서 새 배열 반환
+    },
+    [todos],
+  );
 
-  const TodoListsItemCheckedFalse = TodoListsItem.filter( accr => accr.checkingItem === false);
+  const onUpdate = (id, text) => {
+    setTodos(todos.map((todo) => (todo.id === id ? { ...todo, text } : todo)));
+  };
+  
+  // 추가 , 삭제 , 변경 된 체크값을 재배열함
+  const unChecked = todos.filter(todo => !todo.checked);
+
 
   return (
     <>
       <TodoWrap>
-        <TodoTitle Text ="ToDoList" onSaveTodo={onSaveTodo}/>
-        <TodoInput />
+        <TodoTitle TitleName ="ToDoList" />
+        <TodoInput onInsert = {onInsert}/>
         <TodoListsWrap>
-          <TodoListCount>할 일이 {TodoListsItemCheckedFalse.length}개 남았습니다~</TodoListCount>
-          <TodoLists TodoListsItem = {TodoListsItem}/>
+          <TodoListCount>할 일이 {unChecked.length}개 남았습니다~</TodoListCount>
+          <TodoLists todos = {todos} onUpdate = {onUpdate}/>
         </TodoListsWrap>
       </TodoWrap>
     </>

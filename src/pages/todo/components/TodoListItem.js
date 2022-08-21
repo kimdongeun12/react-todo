@@ -1,20 +1,19 @@
 import React from 'react';
 import styled from "styled-components";
+import StyleButton from "../../styles/StyleButton"
 
 function TodoListItem({TodoList , index}) {
   return (
     <>
       <CheckBoxList>
         <CheckBox >
-          <input id="List01" type="checkbox" value=""/>
-          <label htmlFor="List01">
+          <input id={`List${TodoList.id}`} type="checkbox" value=""/>
+          <label htmlFor={`List${TodoList.id}`}>
             {TodoList.item}
           </label>
         </CheckBox>
-        <BtnWrap>
-          <BtnIcon>수정</BtnIcon>
-          <BtnIcon>삭제</BtnIcon>
-        </BtnWrap>
+        <StyleButton btnType="button" buttonText="수정"/>
+        <StyleButton btnType="button" buttonText="삭제"/>
       </CheckBoxList>
     </>
   );
@@ -34,7 +33,7 @@ const CheckBoxList = styled.li`
 
 const CheckBox = styled.div`
   width: 100%;
-  float: left;
+  word-break: break-all;
   & > input[type="checkbox"] {
     visibility: hidden;
     position: absolute;
@@ -85,16 +84,6 @@ const CheckBox = styled.div`
     border-color: #36daac;
   };
 ` 
-const BtnWrap = styled.div`
- display: flex;
-`
-const BtnIcon = styled.button`
- display: inline-block;
- padding: 4px 8px;
- min-width : 48px;
- border: 1px solid #dddddd;
- & + button { margin-left: 4px; }
-`
 
 
 export default TodoListItem;

@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from "styled-components";
 
-function TodoTitle(props) {
+function TodoTitle({TitleName}) {
   return (
     <>
-      <Title>{props.Text}</Title>
+      <Title>{TitleName}</Title>
     </>
   );
 }

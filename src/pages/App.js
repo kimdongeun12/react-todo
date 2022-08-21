@@ -14,9 +14,11 @@ function App() {
   );
 }
 
+
+// wrap을 앱처럼 디자인 하기 위해서 생성한 스타일
 const AppWrap = styled.div`
   position: relative;
-  margin: 50px auto 0;
+  margin: 50px auto;
   max-width: 375px;
   min-height: 720px;
   max-height: 720px;
@@ -24,6 +26,7 @@ const AppWrap = styled.div`
   background-color : #ffffff;
   border : 10px solid #000000;
   border-radius : 48px;
+  // 앱의 상단을 스타일한 영역
   &::before {
     content: '';
     display: block;
@@ -37,6 +40,7 @@ const AppWrap = styled.div`
     border-radius : 0 0 30px 30px;
     z-index : 10;
   };
+  // 앱의 하단을 스타일한 영역
   &::after {
     content: '';
     display: block;
