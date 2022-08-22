@@ -1,19 +1,39 @@
 import React from 'react';
 import styled from "styled-components";
 import StyleButton from "../../styles/StyleButton"
+import { useTodoController } from '../TodoContext';
 
-function TodoListItem({TodoList , index}) {
+
+function TodoListItem({id, item, checked}) {
+  const dispatch = useTodoController();
+
+  const onChecking = () => {
+    dispatch({
+      type: 'CHECK',
+      id
+    });
+  }
+
+  const onRemove = (e) => {
+    dispatch({
+      type: 'REMOVE',
+      id
+    });
+    
+  };
+  
+
   return (
     <>
       <CheckBoxList>
         <CheckBox >
-          <input id={`List${TodoList.id}`} type="checkbox" value=""/>
-          <label htmlFor={`List${TodoList.id}`}>
-            {TodoList.item}
+          <input id={`List${id}`} type="checkbox" checked={checked} onChange = {onChecking}/>
+          <label htmlFor={`List${id}`}>
+            {item}
           </label>
         </CheckBox>
         <StyleButton btnType="button" buttonText="수정"/>
-        <StyleButton btnType="button" buttonText="삭제"/>
+        <StyleButton btnType="button" buttonText="삭제" clickEvent={() => onRemove(id)}/>
       </CheckBoxList>
     </>
   );

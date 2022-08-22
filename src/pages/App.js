@@ -38,7 +38,7 @@ const AppWrap = styled.div`
     background-color : #000000;
     transform : translateX(-50%);
     border-radius : 0 0 30px 30px;
-    z-index : 10;
+    z-index : 20;
   };
   // 앱의 하단을 스타일한 영역
   &::after {
@@ -52,7 +52,7 @@ const AppWrap = styled.div`
     background-color : #dedede;
     transform : translateX(-50%);
     border-radius : 32px;
-    z-index : 10;
+    z-index : 20;
   };
 `;
 

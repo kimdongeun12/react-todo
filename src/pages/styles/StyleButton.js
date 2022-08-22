@@ -6,11 +6,11 @@ function styleButton({btnType, buttonText , clickEvent}) {
 }
 
 const BtnIcon = styled.button`
-display: inline-block;
-padding: 4px 8px;
-min-width : 48px;
-border: 1px solid #dddddd;
-& + button { margin-left: 4px; }
+    display: inline-block;
+    padding: 4px 8px;
+    min-width : 48px;
+    border: 1px solid #dddddd;
+    & + button { margin-left: 4px; }
 `
 
 
