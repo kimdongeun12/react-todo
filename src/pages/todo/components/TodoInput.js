@@ -1,5 +1,5 @@
 import React , {useState , useRef} from 'react' // useState를 이용해 상태관리를 할 예정
-import styled from "styled-components";
+import styled , {css} from "styled-components";
 import StyleButton from "../../styles/StyleButton"
 import { useTodoController , useTodoState } from '../TodoContext';
 
@@ -8,7 +8,6 @@ function TodoInput() {
   const onChange = e => setValue(e.target.value);
   const todos = useTodoState();
   const dispatch = useTodoController();
-
   const nextId = useRef(todos.length);
   
   const onSubmit = e => {
@@ -34,13 +33,12 @@ function TodoInput() {
 
   return (
     <>
-      <ModalWrap>
+      <ModalWrap >
         <TextWrap>
           <TextField onSubmit={onSubmit}>
             <input id="todoText" onChange={onChange} value={inputValue} type="text" placeholder='할 일을 적어주세용!'/>
             {/* 버튼을 컴포넌트화 하여 이벤트 전달 */}
             <StyleButton btnType="submit" buttonText="저장"/>
-            <StyleButton btnType="button" buttonText="취소"/>
           </TextField>
         </TextWrap>
       </ModalWrap>
@@ -57,7 +55,16 @@ const ModalWrap = styled.div`
   background-color: rgba(0,0,0,0.5);
   z-index : 15;
   visibility: hidden;
-`
+  ${(props) =>
+    props.isOpen && //primary 가 존재할 경우
+    css`
+      visibility: visible;
+      & > div {
+        transform: translate(-50% , -50%) scale(1);
+        opacity : 1;
+      };
+    `}
+  `
 
 const TextWrap = styled.div`
   position: absolute;

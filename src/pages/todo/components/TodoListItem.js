@@ -6,7 +6,6 @@ import { useTodoController } from '../TodoContext';
 
 function TodoListItem({id, item, checked}) {
   const dispatch = useTodoController();
-
   const onChecking = () => {
     dispatch({
       type: 'CHECK',

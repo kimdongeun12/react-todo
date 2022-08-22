@@ -10,7 +10,6 @@ const TodosLists = [
 ];
 
 
-
 function todoReducer(TodoState, action) {
   switch (action.type) {
     case 'CREATE':
@@ -28,12 +27,13 @@ function todoReducer(TodoState, action) {
 
 export function TodoContext({ children }) {
   const [TodoState, dispatch] = useReducer(todoReducer, TodosLists);
+  
 
   return (
     <>
       <TodoStateContext.Provider value={TodoState}>
         <TodoControllContext.Provider value={dispatch}>
-        { children }
+          { children }
         </TodoControllContext.Provider>
       </TodoStateContext.Provider>
     </>
@@ -46,5 +46,4 @@ export function useTodoState() {
 export function useTodoController() {
   return useContext(TodoControllContext);
 }
-
 

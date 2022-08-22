@@ -3,21 +3,20 @@ import styled from "styled-components";
 import TodoListItem from "./TodoListItem";
 import { useTodoState } from '../TodoContext';
 
-function TodoList() {
+function TodoList({handleClick}) {
   const todos = useTodoState();
   // 추가 , 삭제 , 변경 된 체크값을 재배열함
   const unChecked = todos.filter(todo => !todo.checked);
   const listComponents = todos.map((todo , index) => (
     <TodoListItem id={todo.id} item={todo.item} checked={todo.checked} key={todo.id} />
   ))
-  
   return (
     <>
       <TodoListCount>할 일이 {unChecked.length}개 남았습니다~</TodoListCount>
       <ListsWrap>
         {todos.length > 0 ? listComponents : <TodoListNone>할 일을 추가 해주세요~</TodoListNone>}
       </ListsWrap>
-      <TodoButton/>
+      <TodoButton />
     </>
   );
 }
