@@ -4,8 +4,9 @@ import StyleButton from "../../styles/StyleButton"
 import { useTodoController } from '../TodoContext';
 
 
-function TodoListItem({id, item, checked}) {
+function TodoListItem({id, item, checked , openModal}) {
   const dispatch = useTodoController();
+
   const onChecking = () => {
     dispatch({
       type: 'CHECK',
@@ -31,7 +32,7 @@ function TodoListItem({id, item, checked}) {
             {item}
           </label>
         </CheckBox>
-        <StyleButton btnType="button" buttonText="수정"/>
+        <StyleButton btnType="button" buttonText="수정" clickEvent={() => openModal(id)}/>
         <StyleButton btnType="button" buttonText="삭제" clickEvent={() => onRemove(id)}/>
       </CheckBoxList>
     </>

@@ -3,12 +3,13 @@ import styled from "styled-components";
 import TodoListItem from "./TodoListItem";
 import { useTodoState } from '../TodoContext';
 
-function TodoList({handleClick}) {
+function TodoList({openModal}) {
+  
   const todos = useTodoState();
   // 추가 , 삭제 , 변경 된 체크값을 재배열함
   const unChecked = todos.filter(todo => !todo.checked);
-  const listComponents = todos.map((todo , index) => (
-    <TodoListItem id={todo.id} item={todo.item} checked={todo.checked} key={todo.id} />
+  const listComponents = todos.map((todo) => (
+    <TodoListItem id={todo.id} item={todo.item} checked={todo.checked} key={todo.id} openModal={openModal} />
   ))
   return (
     <>
@@ -16,14 +17,14 @@ function TodoList({handleClick}) {
       <ListsWrap>
         {todos.length > 0 ? listComponents : <TodoListNone>할 일을 추가 해주세요~</TodoListNone>}
       </ListsWrap>
-      <TodoButton />
+      <TodoButton onClick={openModal}/>
     </>
   );
 }
 
 const ListsWrap = styled.ul`
   display: block;
-  padding: 8px 16px 28px;
+  padding: 8px 16px 36px;
   max-height: 360px;
   overflow-y: auto;
 `

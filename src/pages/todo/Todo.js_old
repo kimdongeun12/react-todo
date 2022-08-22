@@ -24,13 +24,6 @@ function Todo() {
     setTodos(todos.concat(todo)); //concat(): 인자로 주어진 배열이나 값들을 기존 배열에 합쳐서 새 배열 반환
   },[todos]);
 
-  const onRemove = useCallback(
-    (id) => {
-      console.log(id)
-      setTodos(todos.filter((todo) => todo.id !== id));
-    },
-    [todos],
-  );
 
   // 추가 , 삭제 , 변경 된 체크값을 재배열함
   const unChecked = todos.filter(todo => !todo.checked);

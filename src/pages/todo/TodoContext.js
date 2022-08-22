@@ -9,11 +9,15 @@ const TodosLists = [
   // {id:1 , item: "todoList" , checked: false},
 ];
 
-
 function todoReducer(TodoState, action) {
   switch (action.type) {
     case 'CREATE':
       return TodoState.concat(action.todo);
+    case 'MODIFY':
+      // return console.log(action.todo.item)
+      return TodoState.map(todo =>
+        todo.id === action.todo.id ? { ...todo, item: action.todo.item } : todo
+      );
     case 'CHECK':
       return TodoState.map(todo =>
         todo.id === action.id ? { ...todo, checked: !todo.checked } : todo

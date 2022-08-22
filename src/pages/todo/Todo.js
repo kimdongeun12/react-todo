@@ -1,4 +1,4 @@
-import React  from 'react' 
+import React , {useState } from 'react' 
 import styled from "styled-components";
 import TodoTitle from "./components/TodoTitle";
 import TodoInput from "./components/TodoInput";
@@ -7,15 +7,46 @@ import { TodoContext } from "./TodoContext";
 
 
 function Todo() {
-  
+  const [isModal , setModal] = useState({
+    bool : false , 
+    type : null,
+    listID : null
+  });
+
+
+  const openModal = (id) => {
+    if(!isNaN(id)){
+      console.log(id)
+      setModal({
+        bool : true , 
+        type : "MODIFY",
+        listID : id
+      })
+    }else{
+      setModal({
+        bool : true , 
+        type : "CREATE",
+        listID : null
+      })
+    }
+  };
+
+  const closeModal = () => {
+    setModal({
+      bool : false , 
+      type : null,
+      listID : null
+    })
+  }
+
   return (
     <TodoContext>
       <TodoWrap>
         <TodoTitle TitleName ="ToDoList" /> {/* props 전달방식 */}
         <TodoListsWrap>
-          <TodoLists />
+          <TodoLists openModal = {openModal}/>
         </TodoListsWrap>
-        <TodoInput />
+        <TodoInput isModal= {isModal} close= {closeModal}/>
       </TodoWrap>
     </TodoContext>
   );
