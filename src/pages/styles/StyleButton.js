@@ -2,10 +2,10 @@ import React from 'react';
 import styled from "styled-components";
 
 function styleButton({btnType, buttonText , clickEvent}) {
-    return <BtnIcon type={btnType} onClick={clickEvent}>{buttonText}</BtnIcon>;
+    return <BtnComponents type={btnType} onClick={clickEvent}>{buttonText}</BtnComponents>;
 }
 
-const BtnIcon = styled.button`
+const BtnComponents = styled.button`
     display: inline-block;
     padding: 4px 8px;
     min-width : 48px;
