@@ -1,23 +1,28 @@
 import React , {useState , useRef , useEffect } from 'react' // useState를 이용해 상태관리를 할 예정
-import styled , {css} from "styled-components";
+import styled from "styled-components";
 import StyleButton from "../../styles/StyleButton"
 import { useTodoController , useTodoState } from '../TodoContext';
 
 
 function TodoInput({isModal , close}) {
-  const IsOpen = isModal.bool
   const [inputValue, setValue] = useState('');
   const onChange = e => setValue(e.target.value);
   const todos = useTodoState();
   const dispatch = useTodoController();
   const nextId = useRef(todos.length);
-  const todoInputRef = useRef(null)
+
+  const modifyItem = todos.map(todo => {
+    return todo.id === isModal.listID ? todo.item : '';
+  })
 
   useEffect(() => {
-    // if(IsOpen){
-    //   todoInputRef.current.focus()
-    // }
-  })
+    if(isModal.listID !== null){
+      setValue(modifyItem)
+    }
+    if(isModal.bool === false) {
+      setValue('')
+    }
+  } , [isModal])
 
   const onSubmit = e => {
     e.preventDefault();
@@ -44,18 +49,24 @@ function TodoInput({isModal , close}) {
     close();
   };
 
+
   return (
     <>
+    {
+      isModal.bool ? 
       <ModalWrap IsOpen = {isModal.bool}>
         <TextWrap>
           <TextField onSubmit={onSubmit}>
-            <input id="todoText" onChange={onChange} value={inputValue} type="text" ref={todoInputRef} placeholder='할 일을 적어주세용!'/>
+            <input id="todoText" onChange={onChange} value={inputValue} type="text" placeholder='할 일을 적어주세용!' autoFocus/>
             {/* 버튼을 컴포넌트화 하여 이벤트 전달 */}
             <StyleButton btnType="submit" buttonText="저장"/>
             <StyleButton btnType="button" buttonText="취소" clickEvent = { close }/>
           </TextField>
         </TextWrap>
       </ModalWrap>
+      :
+      null
+      }
     </>
   );
 };
@@ -68,16 +79,6 @@ const ModalWrap = styled.div`
   height: 100%;
   background-color: rgba(0,0,0,0.5);
   z-index : 15;
-  visibility: hidden;
-  ${(props) =>
-    props.IsOpen && //primary 가 존재할 경우
-    css`
-      visibility: visible;
-      & > div {
-        transform: translate(-50% , -50%) scale(1);
-        opacity : 1;
-      };
-    `}
   `
 
 const TextWrap = styled.div`
@@ -86,9 +87,8 @@ const TextWrap = styled.div`
   top: 50%;
   width: 100%;
   max-width: 320px;
-  transform: translate(-50% , -50%) scale(0);
+  transform: translate(-50% , -50%);
   background-color: #ffffff;
-  opacity : 0;
   transition: cubic-bezier(0.1,1.3,0.37,1) 0.8s;
 `
 const TextField = styled.form`

@@ -25,7 +25,7 @@ function TodoList({openModal}) {
 const ListsWrap = styled.ul`
   display: block;
   padding: 8px 16px 36px;
-  max-height: 360px;
+  height: 440px;
   overflow-y: auto;
 `
 

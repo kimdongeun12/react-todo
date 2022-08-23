@@ -14,7 +14,6 @@ function todoReducer(TodoState, action) {
     case 'CREATE':
       return TodoState.concat(action.todo);
     case 'MODIFY':
-      // return console.log(action.todo.item)
       return TodoState.map(todo =>
         todo.id === action.todo.id ? { ...todo, item: action.todo.item } : todo
       );

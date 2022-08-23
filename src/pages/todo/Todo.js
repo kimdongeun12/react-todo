@@ -16,7 +16,6 @@ function Todo() {
 
   const openModal = (id) => {
     if(!isNaN(id)){
-      console.log(id)
       setModal({
         bool : true , 
         type : "MODIFY",
