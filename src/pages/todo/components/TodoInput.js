@@ -21,6 +21,8 @@ function TodoInput({ isModal, close }) {
     if (isModal.bool === false) {
       setValue("");
     }
+    // 의존성배열이 과연 isModal 하나만 빠질까 ?
+    // setValue로 modifyItem을 유동적으로 바꾸는데 modifyItem은 안필요할까...? 추가해
   }, [isModal]);
 
   const onSubmit = (e) => {
