@@ -1,55 +1,64 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
-import StyleButton from "../../styles/StyleButton"
-import { useTodoController } from '../TodoContext';
+import StyleButton from "../../styles/StyleButton";
+import { useTodoController } from "../TodoContext";
 
-
-function TodoListItem({id, item, checked , openModal}) {
+function TodoListItem({ id, item, checked, openModal }) {
   const dispatch = useTodoController();
 
   const onChecking = () => {
     dispatch({
-      type: 'CHECK',
-      id
+      type: "CHECK",
+      id,
     });
-  }
+  };
 
   const onRemove = (e) => {
     dispatch({
-      type: 'REMOVE',
-      id
+      type: "REMOVE",
+      id,
     });
-    
   };
-  
 
   return (
     <>
       <CheckBoxList>
-        <CheckBox >
-          <input id={`List${id}`} type="checkbox" checked={checked} onChange = {onChecking}/>
-          <label htmlFor={`List${id}`}>
-            {item}
-          </label>
+        <CheckBox>
+          <input
+            id={`List${id}`}
+            type="checkbox"
+            checked={checked}
+            onChange={onChecking}
+          />
+          <label htmlFor={`List${id}`}>{item}</label>
         </CheckBox>
-        <StyleButton btnType="button" buttonText="수정" clickEvent={() => openModal(id)}/>
-        <StyleButton btnType="button" buttonText="삭제" clickEvent={() => onRemove(id)}/>
+        {/* StyleButton이 뭔진 모르겠는데 styled-component에서 걍 버튼으로 지정하셈 그리고 클릭액션 onClick으로 하고 */}
+        <StyleButton
+          btnType="button"
+          buttonText="수정"
+          clickEvent={() => openModal(id)}
+        />
+        <StyleButton
+          btnType="button"
+          buttonText="삭제"
+          clickEvent={() => onRemove(id)}
+        />
       </CheckBoxList>
     </>
   );
 }
 const CheckBoxList = styled.li`
   display: flex;
-  align-items : center;
+  align-items: center;
   padding-bottom: 8px;
   & + li {
     padding-top: 8px;
     border-top: 1px solid #dddddd;
-  };
+  }
   &:last-child {
     padding-bottom: 0;
-  };
-`
+  }
+`;
 
 const CheckBox = styled.div`
   width: 100%;
@@ -59,7 +68,7 @@ const CheckBox = styled.div`
     position: absolute;
     left: 0;
     top: 0;
-  };
+  }
   & > input[type="checkbox"] + label {
     position: relative;
     display: inline-block;
@@ -68,7 +77,7 @@ const CheckBox = styled.div`
     min-height: 18px;
     font-size: 14px;
     cursor: pointer;
-  };
+  }
   & > input[type="checkbox"] + label::before {
     content: "";
     position: absolute;
@@ -80,7 +89,7 @@ const CheckBox = styled.div`
     background-color: #ffffff;
     border-radius: 100%;
     transition: all 0.2s;
-  };
+  }
   & > input[type="checkbox"] + label::after {
     content: "";
     position: absolute;
@@ -92,18 +101,17 @@ const CheckBox = styled.div`
     border-width: 1px 0 0 1px;
     transform: rotate(-135deg);
     transition: all 0.2s;
-  };
+  }
   & > input[type="checkbox"]:checked + label {
-    color : #dddddd;
+    color: #dddddd;
     text-decoration: line-through;
-  };
+  }
   & > input[type="checkbox"]:checked + label::before {
     border-color: #36daac;
-  };
+  }
   & > input[type="checkbox"]:checked + label::after {
     border-color: #36daac;
-  };
-` 
-
+  }
+`;
 
 export default TodoListItem;

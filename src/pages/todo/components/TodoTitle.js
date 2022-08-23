@@ -1,9 +1,10 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 
-function TodoTitle({TitleName}) {
+function TodoTitle({ TitleName }) {
   return (
     <>
+      {/* 굳이 컴포넌트 분리 ? */}
       <Title>{TitleName}</Title>
     </>
   );
@@ -15,7 +16,6 @@ const Title = styled.div`
   font-size: 18px;
   font-weight: bold;
   text-align: center;
-`
-
+`;
 
 export default TodoTitle;
