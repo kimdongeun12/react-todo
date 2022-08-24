@@ -8,31 +8,31 @@ function TodoList({ openModal }) {
   // 추가 , 삭제 , 변경 된 체크값을 재배열함
   const unChecked = todos.filter((todo) => !todo.checked);
   // 이렇게 map 돌리는건 코드에서 하는게 좋음 주석 풀어서 보셈 *가독성*
-  const listComponents = todos.map((todo) => (
-    <TodoListItem
-      id={todo.id}
-      item={todo.item}
-      checked={todo.checked}
-      key={todo.id}
-      openModal={openModal}
-    />
-  ));
+  // const listComponents = todos.map((todo) => (
+  //   <TodoListItem
+  //     id={todo.id}
+  //     item={todo.item}
+  //     checked={todo.checked}
+  //     key={todo.id}
+  //     openModal={openModal}
+  //   />
+  // ));
 
   return (
     <>
       <TodoListCount>할 일이 {unChecked.length}개 남았습니다~</TodoListCount>
       <ListsWrap>
         {todos.length > 0 ? (
-          //   todos.map((todo) => (
-          //     <TodoListItem
-          //       key={todo.id}
-          //       id={todo.id}
-          //       item={todo.item}
-          //       checked={todo.checked}
-          //       openModal={openModal}
-          //     />
-          //   ))
-          listComponents
+            todos.map((todo) => (
+              <TodoListItem
+                key={todo.id}
+                id={todo.id}
+                item={todo.item}
+                checked={todo.checked}
+                openModal={openModal}
+              />
+            ))
+          // listComponents
         ) : (
           <TodoListNone>할 일을 추가 해주세요~</TodoListNone>
         )}

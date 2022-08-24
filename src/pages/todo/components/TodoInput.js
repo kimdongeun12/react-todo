@@ -10,20 +10,18 @@ function TodoInput({ isModal, close }) {
   const dispatch = useTodoController();
   const nextId = useRef(todos.length);
 
-  const modifyItem = todos.map((todo) => {
-    return todo.id === isModal.listID ? todo.item : "";
-  });
-
   useEffect(() => {
     if (isModal.listID !== null) {
-      setValue(modifyItem);
+      setValue(todos.map((todo) => {
+        return todo.id === isModal.listID ? todo.item : "";
+      }));
     }
     if (isModal.bool === false) {
       setValue("");
     }
     // 의존성배열이 과연 isModal 하나만 빠질까 ?
     // setValue로 modifyItem을 유동적으로 바꾸는데 modifyItem은 안필요할까...? 추가해
-  }, [isModal]);
+  }, [isModal , todos]);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -59,7 +57,7 @@ function TodoInput({ isModal, close }) {
         // )
         //
         isModal.bool && (
-          <ModalWrap IsOpen={isModal.bool}>
+          <ModalWrap>
             <TextWrap>
               <TextField onSubmit={onSubmit}>
                 <input
@@ -125,7 +123,5 @@ const TextField = styled.form`
     width: calc(50% - 2px);
   }
 `;
-
-// export default React.memo(TodoInput);
 
 export default TodoInput;
