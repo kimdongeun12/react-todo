@@ -11,7 +11,7 @@ function TodoInput({ isModal, close }) {
   const nextId = useRef(todos.length);
 
   useEffect(() => {
-    if (isModal.listID !== null) {
+    if (isModal.type === "MODIFY") {
       setValue(todos.map((todo) => {
         return todo.id === isModal.listID ? todo.item : "";
       }));
